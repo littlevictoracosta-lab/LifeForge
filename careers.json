@@ -1,0 +1,26 @@
+[
+  {
+    "id": "fast_food",
+    "title": "Fast Food Team Member",
+    "salary": 18000,
+    "reqIntel": 10
+  },
+  {
+    "id": "office_assistant",
+    "title": "Office Assistant",
+    "salary": 35000,
+    "reqIntel": 40
+  },
+  {
+    "id": "software_dev",
+    "title": "Software Developer",
+    "salary": 85000,
+    "reqIntel": 70
+  },
+  {
+    "id": "surgeon",
+    "title": "Surgeon",
+    "salary": 220000,
+    "reqIntel": 90
+  }
+]
