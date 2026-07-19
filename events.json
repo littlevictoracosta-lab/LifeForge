@@ -1,0 +1,88 @@
+[
+  {
+    "title": "Lost Wallet",
+    "description": "You spot a leather wallet sitting alone on a park bench.",
+    "minAge": 12,
+    "maxAge": 100,
+    "choices": [
+      {
+        "text": "Hand it over to the police",
+        "effects": {
+          "karma": 15,
+          "happiness": 5
+        }
+      },
+      {
+        "text": "Keep the cash inside",
+        "effects": {
+          "money": 150,
+          "karma": -20
+        }
+      }
+    ]
+  },
+  {
+    "title": "Stray Puppy",
+    "description": "A dirty little puppy follows you home whining.",
+    "minAge": 6,
+    "maxAge": 80,
+    "choices": [
+      {
+        "text": "Adopt it",
+        "effects": {
+          "happiness": 20,
+          "karma": 10
+        }
+      },
+      {
+        "text": "Ignore it",
+        "effects": {
+          "karma": -5
+        }
+      }
+    ]
+  },
+  {
+    "title": "School Yard Bully",
+    "description": "A bully approaches you in the hallway demanding your lunch money.",
+    "minAge": 8,
+    "maxAge": 17,
+    "choices": [
+      {
+        "text": "Stand up and fight",
+        "effects": {
+          "health": -10,
+          "karma": 5
+        }
+      },
+      {
+        "text": "Give them your money",
+        "effects": {
+          "happiness": -10,
+          "money": -10
+        }
+      }
+    ]
+  },
+  {
+    "title": "Crypto Opportunity",
+    "description": "A friend tells you about an upcoming cryptocurrency pre-sale.",
+    "minAge": 18,
+    "maxAge": 70,
+    "choices": [
+      {
+        "text": "Invest $500",
+        "effects": {
+          "money": 1500,
+          "happiness": 10
+        }
+      },
+      {
+        "text": "Pass on it",
+        "effects": {
+          "happiness": 0
+        }
+      }
+    ]
+  }
+]
