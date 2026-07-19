@@ -1,0 +1,20 @@
+[
+  {
+    "name": "United States",
+    "maleNames": ["James", "Liam", "Noah", "Ethan", "Lucas"],
+    "femaleNames": ["Emma", "Olivia", "Ava", "Sophia", "Isabella"],
+    "lastNames": ["Smith", "Johnson", "Williams", "Brown", "Jones"]
+  },
+  {
+    "name": "United Kingdom",
+    "maleNames": ["Oliver", "George", "Harry", "Jack", "Charlie"],
+    "femaleNames": ["Amelia", "Isla", "Emily", "Poppy", "Jessica"],
+    "lastNames": ["Taylor", "Davies", "Evans", "Wilson", "Thomas"]
+  },
+  {
+    "name": "Japan",
+    "maleNames": ["Ren", "Hiroto", "Sora", "Yuma", "Minato"],
+    "femaleNames": ["Himari", "Hina", "Yua", "Aoi", "Ichika"],
+    "lastNames": ["Sato", "Suzuki", "Takahashi", "Tanaka", "Watanabe"]
+  }
+]
