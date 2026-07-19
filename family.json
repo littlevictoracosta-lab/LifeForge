@@ -1,0 +1,168 @@
+{
+  "socioeconomicTiers": [
+    {
+      "tier": "Low Income",
+      "minIncome": 0,
+      "maxIncome": 25000
+    },
+    {
+      "tier": "Working Class",
+      "minIncome": 25001,
+      "maxIncome": 55000
+    },
+    {
+      "tier": "Middle Class",
+      "minIncome": 55001,
+      "maxIncome": 100000
+    },
+    {
+      "tier": "Upper Middle Class",
+      "minIncome": 100001,
+      "maxIncome": 250000
+    },
+    {
+      "tier": "Wealthy",
+      "minIncome": 250001,
+      "maxIncome": 999999
+    },
+    {
+      "tier": "Millionaire",
+      "minIncome": 1000000,
+      "maxIncome": 10000000
+    }
+  ],
+  "parentJobs": [
+    {
+      "title": "Unemployed",
+      "salary": 0,
+      "reqEducation": "None",
+      "promotions": ["Freelancer"]
+    },
+    {
+      "title": "Janitor",
+      "salary": 28000,
+      "reqEducation": "None",
+      "promotions": ["Head Janitor", "Facilities Supervisor"]
+    },
+    {
+      "title": "Cashier",
+      "salary": 24000,
+      "reqEducation": "None",
+      "promotions": ["Shift Supervisor", "Store Manager"]
+    },
+    {
+      "title": "Retail Worker",
+      "salary": 26000,
+      "reqEducation": "None",
+      "promotions": ["Department Lead", "Assistant Manager"]
+    },
+    {
+      "title": "Truck Driver",
+      "salary": 48000,
+      "reqEducation": "High School",
+      "promotions": ["Fleet Lead", "Logistics Coordinator"]
+    },
+    {
+      "title": "Construction Worker",
+      "salary": 45000,
+      "reqEducation": "High School",
+      "promotions": ["Foreman", "Site Manager"]
+    },
+    {
+      "title": "Mechanic",
+      "salary": 46000,
+      "reqEducation": "Trade School",
+      "promotions": ["Master Mechanic", "Shop Owner"]
+    },
+    {
+      "title": "Electrician",
+      "salary": 68000,
+      "reqEducation": "Trade School",
+      "promotions": ["Master Electrician", "Electrical Contractor"]
+    },
+    {
+      "title": "Plumber",
+      "salary": 62000,
+      "reqEducation": "Trade School",
+      "promotions": ["Master Plumber", "Plumbing Contractor"]
+    },
+    {
+      "title": "Police Officer",
+      "salary": 65000,
+      "reqEducation": "High School",
+      "promotions": ["Detective", "Police Captain"]
+    },
+    {
+      "title": "Firefighter",
+      "salary": 60000,
+      "reqEducation": "High School",
+      "promotions": ["Lieutenant", "Fire Chief"]
+    },
+    {
+      "title": "Teacher",
+      "salary": 52000,
+      "reqEducation": "College",
+      "promotions": ["Senior Teacher", "Vice Principal", "Principal"]
+    },
+    {
+      "title": "Registered Nurse",
+      "salary": 72000,
+      "reqEducation": "College",
+      "promotions": ["Senior Nurse", "Nurse Practitioner", "Head of Nursing"]
+    },
+    {
+      "title": "Accountant",
+      "salary": 75000,
+      "reqEducation": "College",
+      "promotions": ["Senior Accountant", "Financial Controller", "CFO"]
+    },
+    {
+      "title": "Software Engineer",
+      "salary": 95000,
+      "reqEducation": "College",
+      "promotions": ["Senior Software Engineer", "Tech Lead", "VP of Engineering"]
+    },
+    {
+      "title": "Artist",
+      "salary": 38000,
+      "reqEducation": "High School",
+      "promotions": ["Gallery Artist", "Art Director"]
+    },
+    {
+      "title": "Musician",
+      "salary": 42000,
+      "reqEducation": "High School",
+      "promotions": ["Studio Musician", "Band Lead", "Producer"]
+    },
+    {
+      "title": "Business Owner",
+      "salary": 120000,
+      "reqEducation": "College",
+      "promotions": ["Regional Owner", "CEO"]
+    },
+    {
+      "title": "Pilot",
+      "salary": 130000,
+      "reqEducation": "College",
+      "promotions": ["Senior Captain", "Chief Pilot"]
+    },
+    {
+      "title": "Scientist",
+      "salary": 90000,
+      "reqEducation": "University",
+      "promotions": ["Lead Researcher", "Laboratory Director"]
+    },
+    {
+      "title": "Lawyer",
+      "salary": 140000,
+      "reqEducation": "University",
+      "promotions": ["Senior Associate", "Partner"]
+    },
+    {
+      "title": "Doctor",
+      "salary": 210000,
+      "reqEducation": "University",
+      "promotions": ["Attending Physician", "Chief of Medicine"]
+    }
+  ]
+}
