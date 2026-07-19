@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="dark-theme">
+    <div id="app" class="app-container">
+        <header class="main-header">
+            <h1 class="logo">LIFESTREAM</h1>
+            <div class="news-ticker">
+                <span id="tickerText">Welcome to LifeStream Simulator. Start a new life to begin!</span>
+            </div>
+            <div class="header-controls">
+                <button id="btnSettings" class="btn-icon" title="Settings">⚙️</button>
+            </div>
+        </header>
+
+        <main class="game-layout">
+            <aside class="panel panel-left">
+                <section class="card profile-card">
+                    <div id="avatarContainer" class="avatar-container"></div>
+                    <h2 id="charName">--- ---</h2>
+                    <p id="charTitle" class="subtitle">Unborn</p>
+                    <p id="charDetails">0 yrs old • Country</p>
+                </section>
+
+                <section class="card stats-card">
+                    <h3>Stats</h3>
+                    <div class="stat-group">
+                        <label>Happiness <span id="valHappiness">100%</span></label>
+                        <div class="progress-bar"><div id="barHappiness" class="fill fill-happiness" style="width: 100%;"></div></div>
+                    </div>
+                    <div class="stat-group">
+                        <label>Health <span id="valHealth">100%</span></label>
+                        <div class="progress-bar"><div id="barHealth" class="fill fill-health" style="width: 100%;"></div></div>
+                    </div>
+                    <div class="stat-group">
+                        <label>Intelligence <span id="valIntelligence">50%</span></label>
+                        <div class="progress-bar"><div id="barIntelligence" class="fill fill-intelligence" style="width: 50%;"></div></div>
+                    </div>
+                    <div class="stat-group">
+                        <label>Looks <span id="valLooks">50%</span></label>
+                        <div class="progress-bar"><div id="barLooks" class="fill fill-looks" style="width: 50%;"></div></div>
+                    </div>
+                    <div class="stat-group">
+                        <label>Fame <span id="valFame">0%</span></label>
+                        <div class="progress-bar"><div id="barFame" class="fill fill-fame" style="width: 0%;"></div></div>
+                    </div>
+                    <div class="stat-group">
+                        <label>Karma <span id="valKarma">50%</span></label>
+                        <div class="progress-bar"><div id="barKarma" class="fill fill-karma" style="width: 50%;"></div></div>
+                    </div>
+                    <div class="stat-group">
+                        <label>Stress <span id="valStress">0%</span></label>
+                        <div class="progress-bar"><div id="barStress" class="fill fill-stress" style="width: 0%;"></div></div>
+                    </div>
+                    <div class="stat-group">
+                        <label>Energy <span id="valEnergy">100%</span></label>
+                        <div class="progress-bar"><div id="barEnergy" class="fill fill-energy" style="width: 100%;"></div></div>
+                    </div>
+                </section>
+
+                <section class="card relationships-card">
+                    <h3>Relationships</h3>
+                    <div id="relationshipList" class="scrollable-list">
+                        <p class="empty-text">No relationships yet.</p>
+                    </div>
+                </section>
+            </aside>
+
+            <section class="panel panel-center">
+                <div class="actions-toolbar">
+                    <button id="btnAgeUp" class="btn btn-primary btn-age">AGE UP (+1 Year)</button>
+                </div>
+
+                <div class="card feed-card">
+                    <h3>Life Events Log</h3>
+                    <div id="eventFeed" class="event-feed"></div>
+                </div>
+
+                <div id="interactionOverlay" class="interaction-overlay hidden">
+                    <div class="interaction-card">
+                        <h3 id="eventTitle">Event Title</h3>
+                        <p id="eventDescription">Description of the event goes here.</p>
+                        <div id="eventChoices" class="choices-container"></div>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="panel panel-right">
+                <section class="card summary-card">
+                    <h3>Finances & Status</h3>
+                    <div class="summary-item"><span>Bank:</span> <strong id="valMoney">$0</strong></div>
+                    <div class="summary-item"><span>Career:</span> <strong id="valJob">Unemployed</strong></div>
+                    <div class="summary-item"><span>Education:</span> <strong id="valEducation">None</strong></div>
+                </section>
+
+                <section class="card navigation-menu">
+                    <h3>Activities</h3>
+                    <div class="menu-grid">
+                        <button id="btnEducation" class="btn btn-menu">🎓 Education</button>
+                        <button id="btnCareers" class="btn btn-menu">💼 Jobs</button>
+                        <button id="btnActivities" class="btn btn-menu">⚽ Lifestyle</button>
+                        <button id="btnAssets" class="btn btn-menu">🏠 Assets</button>
+                        <button id="btnAchievements" class="btn btn-menu">🏆 Trophies</button>
+                        <button id="btnNewLife" class="btn btn-danger">🔄 New Life</button>
+                    </div>
+                </section>
+
+                <section class="card achievements-preview">
+                    <h3>Achievements (<span id="achieveCount">0</span>)</h3>
+                    <div id="achieveList" class="scrollable-list"></div>
+                </section>
+            </aside>
+        </main>
+
+        <div id="modal" class="modal hidden">
+            <div class="modal-content">
+                <span id="modalClose" class="modal-close">&times;</span>
+                <h2 id="modalTitle">Modal Title</h2>
+                <div id="modalBody" class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
