@@ -1,0 +1,23 @@
+[
+  {
+    "id": "age_50",
+    "title": "Half a Century",
+    "description": "Reach the age of 50.",
+    "condition": "age",
+    "value": 50
+  },
+  {
+    "id": "age_100",
+    "title": "Centenarian",
+    "description": "Reach the age of 100.",
+    "condition": "age",
+    "value": 100
+  },
+  {
+    "id": "millionaire",
+    "title": "Millionaire",
+    "description": "Accumulate $1,000,000 in cash.",
+    "condition": "money",
+    "value": 1000000
+  }
+]
