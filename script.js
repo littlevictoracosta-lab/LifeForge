@@ -403,3 +403,180 @@ window.addEventListener("DOMContentLoaded", () => {
     window.game = new LifeEngine();
     window.game.init();
 });
+
+
+
+
+
+
+
+
+
+
+// --- PARENT MODEL CLASS ---
+class Parent {
+    constructor(data = {}) {
+        this.firstName = data.firstName || "Jane";
+        this.lastName = data.lastName || "Doe";
+        this.gender = data.gender || "Female";
+        this.age = data.age || 30;
+        this.occupation = data.occupation || "Unemployed";
+        this.salary = data.salary || 0;
+        this.education = data.education || "High School";
+        this.happiness = data.happiness ?? 75;
+        this.health = data.health ?? 85;
+        this.intelligence = data.intelligence ?? 50;
+        this.relationship = data.relationship ?? 80;
+        this.isAlive = data.isAlive ?? true;
+        this.jobData = data.jobData || null; // Stores promotion track info
+    }
+
+    // Clamp stats between 0 and 100
+    clampStats() {
+        this.happiness = Math.max(0, Math.min(100, this.happiness));
+        this.health = Math.max(0, Math.min(100, this.health));
+        this.intelligence = Math.max(0, Math.min(100, this.intelligence));
+        this.relationship = Math.max(0, Math.min(100, this.relationship));
+    }
+}
+
+// --- FAMILY SYSTEM CONTROLLER ---
+class FamilySystem {
+    constructor(gameData) {
+        this.gameData = gameData;
+        this.mother = null;
+        this.father = null;
+    }
+
+    // Generate random realistic parents on new life
+    generateParents(lastName, countryData) {
+        const educations = ["None", "High School", "Trade School", "College", "University"];
+        
+        // Helper to select random job matching education tier
+        const getRandomJob = (edu) => {
+            const jobs = this.gameData.familyData.parentJobs;
+            let available = jobs.filter(j => j.reqEducation === edu);
+            if (available.length === 0) available = jobs;
+            return available[Math.floor(Math.random() * available.length)];
+        };
+
+        // Generate Mother
+        const momEdu = educations[Math.floor(Math.random() * educations.length)];
+        const momJob = getRandomJob(momEdu);
+        this.mother = new Parent({
+            firstName: countryData.femaleNames[Math.floor(Math.random() * countryData.femaleNames.length)],
+            lastName: lastName,
+            gender: "Female",
+            age: Math.floor(Math.random() * 15) + 22, // 22 - 36 years old
+            occupation: momJob.title,
+            salary: momJob.salary,
+            education: momEdu,
+            jobData: momJob
+        });
+
+        // Generate Father
+        const dadEdu = educations[Math.floor(Math.random() * educations.length)];
+        const dadJob = getRandomJob(dadEdu);
+        this.father = new Parent({
+            firstName: countryData.maleNames[Math.floor(Math.random() * countryData.maleNames.length)],
+            lastName: lastName,
+            gender: "Male",
+            age: Math.floor(Math.random() * 15) + 24, // 24 - 38 years old
+            occupation: dadJob.title,
+            salary: dadJob.salary,
+            education: dadEdu,
+            jobData: dadJob
+        });
+    }
+
+    // Calculate household bracket
+    getFamilyIncomeTier() {
+        const totalIncome = (this.mother.isAlive ? this.mother.salary : 0) + 
+                           (this.father.isAlive ? this.father.salary : 0);
+        
+        const tiers = this.gameData.familyData.socioeconomicTiers;
+        for (let t of tiers) {
+            if (totalIncome >= t.minIncome && totalIncome <= t.maxIncome) {
+                return { tier: t.tier, totalIncome };
+            }
+        }
+        return { tier: "Millionaire", totalIncome };
+    }
+
+    // Dynamic annual simulation tick for parents
+    ageUpParents(logCallback) {
+        [this.mother, this.father].forEach(parent => {
+            if (!parent || !parent.isAlive) return;
+
+            parent.age++;
+            
+            // Age health drop
+            if (parent.age > 50) {
+                parent.health -= Math.floor(Math.random() * 3) + 1;
+            }
+
+            // Check parent death
+            if (parent.health <= 0 || (parent.age > 75 && Math.random() < (parent.age - 70) * 0.04)) {
+                parent.isAlive = false;
+                parent.occupation = "Deceased";
+                parent.salary = 0;
+                logCallback(`💔 Your ${parent.gender === "Female" ? "mother" : "father"}, ${parent.firstName}, has passed away at age ${parent.age}.`);
+                return;
+            }
+
+            // Retirement Check
+            if (parent.age >= 65 && parent.occupation !== "Retired") {
+                parent.occupation = "Retired";
+                parent.salary = Math.floor(parent.salary * 0.6); // Pension
+                logCallback(`👴 Your ${parent.gender === "Female" ? "mother" : "father"} retired at age ${parent.age}.`);
+                return;
+            }
+
+            // Skip event rolls if retired
+            if (parent.occupation === "Retired") return;
+
+            // Random Life Event Roll (25% chance per parent per year)
+            const eventRoll = Math.random();
+
+            if (eventRoll < 0.05) { // Promotion
+                if (parent.jobData && parent.jobData.promotions && parent.jobData.promotions.length > 0) {
+                    const nextJob = parent.jobData.promotions.shift();
+                    parent.occupation = nextJob;
+                    parent.salary = Math.floor(parent.salary * 1.25);
+                    logCallback(`📈 Your ${parent.gender === "Female" ? "mother" : "father"} got promoted to ${nextJob}!`);
+                }
+            } else if (eventRoll < 0.08) { // Pay Raise
+                const raise = Math.floor(parent.salary * 0.08);
+                parent.salary += raise;
+                logCallback(`💵 Your ${parent.gender === "Female" ? "mother" : "father"} got a salary raise!`);
+            } else if (eventRoll < 0.11) { // Job Loss
+                parent.occupation = "Unemployed";
+                parent.salary = 0;
+                logCallback(`⚠️ Your ${parent.gender === "Female" ? "mother" : "father"} lost their job.`);
+            } else if (eventRoll < 0.14) { // Found New Job
+                if (parent.occupation === "Unemployed") {
+                    const jobs = this.gameData.familyData.parentJobs;
+                    const newJob = jobs[Math.floor(Math.random() * jobs.length)];
+                    parent.occupation = newJob.title;
+                    parent.salary = newJob.salary;
+                    parent.jobData = newJob;
+                    logCallback(`💼 Your ${parent.gender === "Female" ? "mother" : "father"} started working as a ${newJob.title}.`);
+                }
+            } else if (eventRoll < 0.16) { // Illness
+                parent.health -= 20;
+                logCallback(`🤒 Your ${parent.gender === "Female" ? "mother" : "father"} fell ill.`);
+            } else if (eventRoll < 0.17) { // Lottery Win
+                parent.salary += 50000;
+                logCallback(`🎉 Your parents won a small lottery prize!`);
+            }
+            
+            parent.clampStats();
+        });
+
+        // House upgrade event (2% chance if middle class or above)
+        const incomeInfo = this.getFamilyIncomeTier();
+        if (incomeInfo.totalIncome > 60000 && Math.random() < 0.02) {
+            logCallback(`🏡 Your parents bought a new house!`);
+        }
+    }
+}
